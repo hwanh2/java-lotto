@@ -1,1 +1,1 @@
-# java-lotto
+# java-lotto-precourse
