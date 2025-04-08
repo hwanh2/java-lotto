@@ -9,7 +9,7 @@ public class outputView {
     public void printLotto(int money, List<Lotto> lottos){
         System.out.println(money/1000+"개를 입력했습니다.");
         for (int i = 0; i < lottos.size(); i++) {
-            System.out.println("로또 " + (i + 1) + "번: " + lottos.get(i).getNumbers());
+            System.out.println(lottos.get(i).getNumbers());
         }
     }
 
