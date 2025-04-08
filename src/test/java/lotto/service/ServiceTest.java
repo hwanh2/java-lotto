@@ -19,7 +19,7 @@ public class ServiceTest {
         LottoService service = new LottoService(winningNumbers, bonusNumber);
 
         // 랜덤으로 생성된 로또 5개
-        Lottos lottos = service.createLottos(1000000000); // 5장
+        Lottos lottos = service.createLottos(100000); // 100장
 
         // when
         Map<String, Integer> result = service.matchLotto(lottos);
@@ -29,5 +29,9 @@ public class ServiceTest {
         for (Map.Entry<String, Integer> entry : result.entrySet()) {
             System.out.println(entry.getKey() + " : " + entry.getValue());
         }
+
+        double rate = service.checkProfitRate(100000);
+        System.out.println("수익률 : "+rate+"%");
     }
+
 }

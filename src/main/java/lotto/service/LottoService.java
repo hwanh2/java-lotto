@@ -74,4 +74,15 @@ public class LottoService {
         }
     }
 
+    public double checkProfitRate(int money){
+        long sum = 0;
+        sum += result.get("3개")*5000;
+        sum += result.get("4개")*50000;
+        sum += result.get("5개")*1500000;
+        sum += result.get("5개,보너스")*30000000;
+        sum += result.get("6개")*2000000000;
+
+        return Double.parseDouble(String.format("%.1f",(double)sum/money*100));
+    }
+
 }
