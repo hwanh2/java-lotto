@@ -9,44 +9,36 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoService {
-    private final List<Integer> winningNumbers;
-    private final int bonusNumber;
-    private HashMap<String,Integer> result;
-
-    public LottoService(List<Integer> winningNumbers, int bonusNumber) {
-        this.winningNumbers = winningNumbers;
-        this.bonusNumber = bonusNumber;
-    }
 
     public Lottos createLottos(int money){
         int count = money/1000;
         return Lottos.from(count);
     }
 
-    public Map<String,Integer> matchLotto(Lottos lottos){
-        initResult(); // 등수별 초기값 세팅
+    public Map<String, Integer> matchLotto(Lottos lottos, List<Integer> winningNumbers, int bonusNumber) {
+        Map<String, Integer> result = initResult();
 
-        for(Lotto lotto : lottos.getLottos()){
-            List<Integer> lottoNumbers = lotto.getNumbers(); // 로또 한 장
-            int matchCount = getMatchCount(lottoNumbers);
+        for (Lotto lotto : lottos.getLottos()) {
+            List<Integer> lottoNumbers = lotto.getNumbers();
+            int matchCount = getMatchCount(lottoNumbers, winningNumbers);
             boolean bonusCount = lottoNumbers.contains(bonusNumber);
 
-            checkLotto(matchCount,bonusCount);
+            checkLotto(matchCount, bonusCount, result);
         }
         return result;
     }
 
-    private void initResult(){
-        result = new LinkedHashMap<>();
-
+    private Map<String, Integer> initResult() {
+        Map<String, Integer> result = new LinkedHashMap<>();
         result.put("3개", 0);
         result.put("4개", 0);
         result.put("5개", 0);
         result.put("5개,보너스", 0);
         result.put("6개", 0);
+        return result;
     }
 
-    private int getMatchCount(List<Integer> lottoNumbers){
+    private int getMatchCount(List<Integer> lottoNumbers, List<Integer> winningNumbers){
         int count = 0;
         for(int number : lottoNumbers){
             if(winningNumbers.contains(number)){
@@ -56,7 +48,7 @@ public class LottoService {
         return count;
     }
 
-    private void checkLotto(int matchCount,boolean bonusCount){
+    private void checkLotto(int matchCount,boolean bonusCount,Map<String,Integer> result){
         if(matchCount==3){
             result.put("3개", result.get("3개") + 1);
         }
@@ -74,7 +66,7 @@ public class LottoService {
         }
     }
 
-    public double checkProfitRate(int money){
+    public double checkProfitRate(int money,Map<String,Integer> result){
         long sum = 0;
         sum += result.get("3개")*5000;
         sum += result.get("4개")*50000;
