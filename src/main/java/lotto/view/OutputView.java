@@ -5,9 +5,9 @@ import lotto.model.Lotto;
 import java.util.List;
 import java.util.Map;
 
-public class outputView {
+public class OutputView {
     public void printLotto(int money, List<Lotto> lottos){
-        System.out.println(money/1000+"개를 입력했습니다.");
+        System.out.println(money/1000+"개를 구매했습니다.");
         for (int i = 0; i < lottos.size(); i++) {
             System.out.println(lottos.get(i).getNumbers());
         }
