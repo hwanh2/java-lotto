@@ -13,7 +13,7 @@ public class InputView {
     }
 
     public List<Integer> winningInput() {
-        System.out.println("당첨번호를 입력해주세요.");
+        System.out.println("\n당첨번호를 입력해주세요.");
         String input = Console.readLine();
 
         StringTokenizer tokenizer = new StringTokenizer(input, ",");
@@ -27,7 +27,7 @@ public class InputView {
     }
 
     public int bonusInput(){
-        System.out.println("보너스 번호를 입력해주세요.");
+        System.out.println("\n보너스 번호를 입력해주세요.");
         return Integer.parseInt(Console.readLine());
     }
 }

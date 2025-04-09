@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class OutputView {
     public void printLotto(int money, List<Lotto> lottos){
-        System.out.println(money/1000+"개를 구매했습니다.");
+        System.out.println("\n"+money/1000+"개를 구매했습니다.");
         for (int i = 0; i < lottos.size(); i++) {
             System.out.println(lottos.get(i).getNumbers());
         }
@@ -25,6 +25,6 @@ public class OutputView {
     }
 
     public void printProfitRate(double profitRate){
-        System.out.println("총 수익률은 "+profitRate+"입니다.");
+        System.out.println("총 수익률은 "+profitRate+"%입니다.");
     }
 }
