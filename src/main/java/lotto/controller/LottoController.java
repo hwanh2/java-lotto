@@ -32,6 +32,10 @@ public class LottoController {
 
         Map<String,Integer> result = lottoService.matchLotto(lottos,winningnumbers,bonusNumber);
 
-        outputView.printResult(result);
+        outputView.printResult(result); // 결과 출력
+
+        double profitRate = lottoService.checkProfitRate(money,result);
+
+        outputView.printProfitRate(profitRate); // 수익률 출력
     }
 }
