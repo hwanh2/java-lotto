@@ -28,7 +28,7 @@ public class LottoController {
         outputView.printLotto(money,lottoList); // 생성한 로또 출력
 
         List<Integer> winningnumbers = inputView.winningInput(); // 당첨번호 입력
-        int bonusNumber = inputView.bonusInput(); // 보너스 번호 입력
+        int bonusNumber = inputView.bonusInput(winningnumbers); // 보너스 번호 입력, 검증을 위해 당첨번호 넘겨줌
 
         Map<String,Integer> result = lottoService.matchLotto(lottos,winningnumbers,bonusNumber);
 
