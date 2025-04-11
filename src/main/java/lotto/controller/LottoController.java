@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.model.Lotto;
+import lotto.model.LottoRank;
 import lotto.model.Lottos;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -30,7 +31,7 @@ public class LottoController {
         List<Integer> winningnumbers = inputView.winningInput(); // 당첨번호 입력
         int bonusNumber = inputView.bonusInput(winningnumbers); // 보너스 번호 입력, 검증을 위해 당첨번호 넘겨줌
 
-        Map<String,Integer> result = lottoService.matchLotto(lottos,winningnumbers,bonusNumber);
+        Map<LottoRank,Integer> result = lottoService.matchLotto(lottos,winningnumbers,bonusNumber);
 
         outputView.printResult(result); // 결과 출력
 

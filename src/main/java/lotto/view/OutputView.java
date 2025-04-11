@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.model.Lotto;
+import lotto.model.LottoRank;
 
 import java.util.List;
 import java.util.Map;
@@ -13,15 +14,14 @@ public class OutputView {
         }
     }
 
-    public void printResult(Map<String, Integer> result){
+    public void printResult(Map<LottoRank, Integer> result) {
         System.out.println("\n당첨 통계");
         System.out.println("---");
 
-        System.out.println("3개 일치 (5,000원) - " + result.get("3개") + "개");
-        System.out.println("4개 일치 (50,000원) - " + result.get("4개") + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + result.get("5개") + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + result.get("5개,보너스") + "개");
-        System.out.println("6개 일치 (200,000,000원) - " + result.get("6개") + "개");
+        for (LottoRank rank : LottoRank.values()) {
+            if (rank == LottoRank.NONE) continue; // NONE은 출력 안 함
+            System.out.println(rank.getMessage() + result.get(rank) + "개");
+        }
     }
 
     public void printProfitRate(double profitRate){
