@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.model.LottoRank;
 import lotto.model.Lottos;
 import org.junit.jupiter.api.Test;
 import java.util.Arrays;
@@ -19,11 +20,11 @@ public class ServiceTest {
         Lottos lottos = service.createLottos(100000); // 100장
 
         // when
-        Map<String, Integer> result = service.matchLotto(lottos,winningNumbers,bonusNumber);
+        Map<LottoRank, Integer> result = service.matchLotto(lottos,winningNumbers,bonusNumber);
 
         // then - 그냥 콘솔에 찍어보기
         System.out.println("로또 결과 출력");
-        for (Map.Entry<String, Integer> entry : result.entrySet()) {
+        for (Map.Entry<LottoRank, Integer> entry : result.entrySet()) {
             System.out.println(entry.getKey() + " : " + entry.getValue());
         }
 
