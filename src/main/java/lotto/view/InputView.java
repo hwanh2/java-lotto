@@ -17,7 +17,7 @@ public class InputView {
                 validation.validateMoneyInput(input); // 입력받은 금액 검증
                 return Integer.parseInt(input); // 검증 성공 시 숫자로 변환해서 반환
             } catch (IllegalArgumentException e) {
-                // 예외 메시지는 validation 클래스에서 이미 출력했으니 여기선 무시하고 반복
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -32,7 +32,7 @@ public class InputView {
                 validation.validateWinningInput(winningNumbers); // 당점번호 검증
                 return winningNumbers;
             } catch (IllegalArgumentException e){
-
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -58,9 +58,9 @@ public class InputView {
                 validation.validateBonusNumber(bonusNumber, winningNumbers); // 범위와 중복 검증
                 return bonusNumber;
             } catch (NumberFormatException e) {
-                ExceptionMessage.numberException(); // 숫자가 아닐 경우
+                System.out.println(ExceptionMessage.INPUT_TYPE_ERROR.getMessage()); // 숫자가 아닐 경우
             } catch (IllegalArgumentException e) {
-
+                System.out.println(e.getMessage());
             }
         }
     }
