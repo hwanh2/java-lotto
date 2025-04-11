@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class validation {
+public class Validation {
     public static void validateMoneyInput(String input) {
         int money;
         try {
