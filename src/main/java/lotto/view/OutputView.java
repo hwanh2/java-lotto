@@ -19,10 +19,24 @@ public class OutputView {
         System.out.println("---");
 
         for (LottoRank rank : LottoRank.values()) {
-            if (rank == LottoRank.NONE) continue; // NONE은 출력 안 함
-            System.out.println(rank.getMessage() + result.get(rank) + "개");
+            if (rank == LottoRank.NONE) continue;
+
+            String message = buildMessage(rank, result.get(rank));
+            System.out.println(message);
         }
     }
+
+    private String buildMessage(LottoRank rank, int count) {
+        if (rank == LottoRank.BONUS) {
+            return String.format("5개 일치, 보너스 볼 일치 (%s원) - %d개", formatMoney(rank.getPrize()), count);
+        }
+        return String.format("%d개 일치 (%s원) - %d개", rank.getMatchCount(), formatMoney(rank.getPrize()), count);
+    }
+
+    private String formatMoney(int prize) {
+        return String.format("%,d", prize);
+    }
+
 
     public void printProfitRate(double profitRate){
         System.out.println("총 수익률은 "+profitRate+"%입니다.");
