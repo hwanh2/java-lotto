@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.generator.NumberGenerator;
 import lotto.model.Lotto;
 import lotto.model.LottoNumber;
 import lotto.model.LottoRank;
@@ -12,9 +13,9 @@ import java.util.Map;
 
 public class LottoService {
 
-    public Lottos createLottos(int money){
+    public Lottos createLottos(int money, NumberGenerator generator){
         int count = money/1000;
-        return Lottos.from(count);
+        return Lottos.from(count, generator);
     }
 
     public Map<LottoRank, Integer> matchLotto(Lottos lottos, List<Integer> winningNumbers, int bonusNumber) {

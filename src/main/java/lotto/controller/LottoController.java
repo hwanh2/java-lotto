@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.generator.NumberGenerator;
 import lotto.model.Lotto;
 import lotto.model.LottoRank;
 import lotto.model.Lottos;
@@ -14,16 +15,18 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoService lottoService;
+    private final NumberGenerator generator;
 
-    public LottoController(InputView inputView, OutputView outputView, LottoService lottoService) {
+    public LottoController(InputView inputView, OutputView outputView, LottoService lottoService, NumberGenerator generator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.lottoService = lottoService;
+        this.generator = generator;
     }
 
     public void run(){
         int money = inputView.moneyInput(); // 돈 입력
-        Lottos lottos = lottoService.createLottos(money); // 로또 생성
+        Lottos lottos = lottoService.createLottos(money,generator); // 로또 생성
         List<Lotto> lottoList = lottos.getLottos(); // 생성한 로또 가져오기
 
         outputView.printLotto(money,lottoList); // 생성한 로또 출력
