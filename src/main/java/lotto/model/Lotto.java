@@ -6,6 +6,7 @@ import lotto.generator.NumberGenerator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<LottoNumber> lotto;
@@ -14,34 +15,27 @@ public class Lotto {
         List<Integer> tmpLotto = generator.generate();
         Collections.sort(tmpLotto); // 오름차순 정렬
 
-        List<LottoNumber> lotto = new ArrayList<>();
-        for (Integer number : tmpLotto) {
-            lotto.add(new LottoNumber(number));
-        }
-        this.lotto = lotto;
+        this.lotto = tmpLotto.stream()
+                .map(LottoNumber::new)
+                .collect(Collectors.toList());
     }
 
     public List<LottoNumber> getNumbers() {
         return lotto;
     }
 
-    public int getMatchCount(List<Integer> winningNumbers){
-        int count = 0;
-        for (LottoNumber number : lotto) {
-            if (winningNumbers.contains(number.getLottoNumber())) {
-                count++;
-            }
-        }
-        return count;
+    public int getMatchCount(List<Integer> winningNumbers) {
+        return (int) lotto.stream()
+                .map(LottoNumber::getLottoNumber)
+                .filter(winningNumbers::contains)
+                .count();
     }
 
+
     public boolean getBonusCount(int bonus) {
-        for (LottoNumber number : lotto) {
-            if (number.getLottoNumber() == bonus) {
-                return true;
-            }
-        }
-        return false;
+        return lotto.stream()
+                .map(LottoNumber::getLottoNumber)
+                .anyMatch(number -> number == bonus);
     }
 
 }
