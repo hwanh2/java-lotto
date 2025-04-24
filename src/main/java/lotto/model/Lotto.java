@@ -24,4 +24,24 @@ public class Lotto {
     public List<LottoNumber> getNumbers() {
         return lotto;
     }
+
+    public int getMatchCount(List<Integer> winningNumbers){
+        int count = 0;
+        for (LottoNumber number : lotto) {
+            if (winningNumbers.contains(number.getLottoNumber())) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public boolean getBonusCount(int bonus) {
+        for (LottoNumber number : lotto) {
+            if (number.getLottoNumber() == bonus) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

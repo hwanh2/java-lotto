@@ -18,7 +18,7 @@ public class ServiceTest {
         int bonusNumber = 7;
 
         FixNumberGenerator generator = new FixNumberGenerator(Arrays.asList(1, 2, 3, 4, 5, 7));
-        LottoService service = new LottoService();
+        LottoApplicationService service = new LottoApplicationService();
 
         Lottos lottos = service.createLottos(1000, generator);
 

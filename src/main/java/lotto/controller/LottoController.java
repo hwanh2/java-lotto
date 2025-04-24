@@ -4,7 +4,7 @@ import lotto.generator.NumberGenerator;
 import lotto.model.Lotto;
 import lotto.model.LottoRank;
 import lotto.model.Lottos;
-import lotto.service.LottoService;
+import lotto.service.LottoApplicationService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -14,10 +14,10 @@ import java.util.Map;
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final LottoService lottoService;
+    private final LottoApplicationService lottoService;
     private final NumberGenerator generator;
 
-    public LottoController(InputView inputView, OutputView outputView, LottoService lottoService, NumberGenerator generator) {
+    public LottoController(InputView inputView, OutputView outputView, LottoApplicationService lottoService, NumberGenerator generator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.lottoService = lottoService;
