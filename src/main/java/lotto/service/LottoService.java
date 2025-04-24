@@ -1,6 +1,7 @@
 package lotto.service;
 
 import lotto.model.Lotto;
+import lotto.model.LottoNumber;
 import lotto.model.LottoRank;
 import lotto.model.Lottos;
 
@@ -20,7 +21,7 @@ public class LottoService {
         Map<LottoRank, Integer> result = initResult();
 
         for (Lotto lotto : lottos.getLottos()) {
-            List<Integer> lottoNumbers = lotto.getNumbers();
+            List<LottoNumber> lottoNumbers = lotto.getNumbers();
             int matchCount = getMatchCount(lottoNumbers, winningNumbers);
             boolean bonusMatch = lottoNumbers.contains(bonusNumber);
 
@@ -42,10 +43,10 @@ public class LottoService {
         return result;
     }
 
-    private int getMatchCount(List<Integer> lottoNumbers, List<Integer> winningNumbers){
+    private int getMatchCount(List<LottoNumber> lottoNumbers, List<Integer> winningNumbers){
         int count = 0;
-        for(int number : lottoNumbers){
-            if(winningNumbers.contains(number)){
+        for(LottoNumber number : lottoNumbers){
+            if(winningNumbers.contains(number.getLottoNumber())){
                 count++;
             }
         }
