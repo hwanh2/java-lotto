@@ -22,11 +22,10 @@ public class LottoService {
         Map<LottoRank, Integer> result = initResult();
 
         for (Lotto lotto : lottos.getLottos()) {
-            List<LottoNumber> lottoNumbers = lotto.getNumbers();
-            int matchCount = getMatchCount(lottoNumbers, winningNumbers);
-            boolean bonusMatch = lottoNumbers.contains(bonusNumber);
+            int matchCount = lotto.getMatchCount(winningNumbers);
+            boolean bonusCount = lotto.getBonusCount(bonusNumber);
 
-            LottoRank rank = LottoRank.of(matchCount, bonusMatch);
+            LottoRank rank = LottoRank.of(matchCount, bonusCount);
             if (rank != LottoRank.NONE) {
                 result.put(rank, result.get(rank) + 1);
             }
@@ -42,16 +41,6 @@ public class LottoService {
             }
         }
         return result;
-    }
-
-    private int getMatchCount(List<LottoNumber> lottoNumbers, List<Integer> winningNumbers){
-        int count = 0;
-        for(LottoNumber number : lottoNumbers){
-            if(winningNumbers.contains(number.getLottoNumber())){
-                count++;
-            }
-        }
-        return count;
     }
 
 
