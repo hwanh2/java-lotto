@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.generator.NumberGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,10 +12,10 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public static Lottos from(int num){
+    public static Lottos from(int num, NumberGenerator generator){
         List<Lotto> lottoList = new ArrayList<>();
         for (int i = 0; i < num; i++) {
-            lottoList.add(new Lotto());
+            lottoList.add(new Lotto(generator));
         }
         return new Lottos(lottoList);
     }
