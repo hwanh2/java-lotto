@@ -1,11 +1,8 @@
 package lotto.model;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.generator.NumberGenerator;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Lotto {
@@ -13,6 +10,7 @@ public class Lotto {
 
     public Lotto(NumberGenerator generator) {
         List<Integer> tmpLotto = generator.generate();
+        validate(tmpLotto);
         Collections.sort(tmpLotto); // 오름차순 정렬
 
         this.lotto = tmpLotto.stream()
@@ -36,6 +34,17 @@ public class Lotto {
         return lotto.stream()
                 .map(LottoNumber::getLottoNumber)
                 .anyMatch(number -> number == bonus);
+    }
+
+    private void validate(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+
+        Set<Integer> set = new HashSet<>(numbers);
+        if (set.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복을 허용하지 않습니다.");
+        }
     }
 
 }
