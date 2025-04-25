@@ -22,4 +22,4 @@
 - [x] 랜덤 번호 생성 책임 외부 주입 (DIP 적용)
 - [x] LottoService 역할 분리로 응집도 향상
 - [x] LottoRank의 출력 형식 수정
-- [ ] stream사용하여 코드를 간결하게 수정
+- [x] stream사용하여 코드를 간결하게 수정

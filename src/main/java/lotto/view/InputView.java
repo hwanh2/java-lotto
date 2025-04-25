@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 public class InputView {
-    public int moneyInput(){
+    public int readMoneyInput(){
         while (true) {
             System.out.println("구입금액을 입력해주세요.");
             String input = Console.readLine();
@@ -22,7 +22,7 @@ public class InputView {
         }
     }
 
-    public List<Integer> winningInput() {
+    public List<Integer> readWinningNumbersInput() {
         while(true){
             System.out.println("\n당첨번호를 입력해주세요.");
             String input = Console.readLine();
@@ -48,7 +48,7 @@ public class InputView {
         return numbers;
     }
 
-    public int bonusInput(List<Integer> winningNumbers){
+    public int readBonusInput(List<Integer> winningNumbers){
         while(true){
             System.out.println("\n보너스 번호를 입력해주세요.");
             String input = Console.readLine();

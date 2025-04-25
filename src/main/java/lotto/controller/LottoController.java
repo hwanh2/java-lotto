@@ -25,14 +25,14 @@ public class LottoController {
     }
 
     public void run(){
-        int money = inputView.moneyInput(); // 돈 입력
+        int money = inputView.readMoneyInput(); // 돈 입력
         Lottos lottos = lottoService.createLottos(money,generator); // 로또 생성
-        List<Lotto> lottoList = lottos.getLottos(); // 생성한 로또 가져오기
+        List<Lotto> lottoTickets = lottos.getLottos(); // 생성한 로또 가져오기
 
-        outputView.printLotto(money,lottoList); // 생성한 로또 출력
+        outputView.printLotto(money,lottoTickets); // 생성한 로또 출력
 
-        List<Integer> winningnumbers = inputView.winningInput(); // 당첨번호 입력
-        int bonusNumber = inputView.bonusInput(winningnumbers); // 보너스 번호 입력, 검증을 위해 당첨번호 넘겨줌
+        List<Integer> winningnumbers = inputView.readWinningNumbersInput(); // 당첨번호 입력
+        int bonusNumber = inputView.readBonusInput(winningnumbers); // 보너스 번호 입력, 검증을 위해 당첨번호 넘겨줌
 
         Map<LottoRank,Integer> result = lottoService.matchLotto(lottos,winningnumbers,bonusNumber);
 
